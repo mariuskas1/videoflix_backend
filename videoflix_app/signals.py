@@ -2,6 +2,7 @@ from .models import Video
 from django.dispatch import receiver
 from django.db.models.signals import post_save, post_delete
 import os
+from videoflix_app.tasks import convert_720p
 
 
 @receiver(post_save, sender=Video)
@@ -10,6 +11,7 @@ def video_post_save(sender, instance, created, **kwargs):
 
     if created:
         print('Video created')
+        convert_720p(instance.video_file.path)
 
 
 @receiver(post_delete, sender=Video)
