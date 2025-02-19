@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'user_auth_app'
 ]
 
+AUTH_USER_MODEL = 'user_auth_app.CustomUser'
+
 MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'corsheaders.middleware.CorsMiddleware',
