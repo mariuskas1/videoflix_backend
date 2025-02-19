@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'django_rq',
     'import_export',
+    'user_auth_app'
 ]
 
 MIDDLEWARE = [
