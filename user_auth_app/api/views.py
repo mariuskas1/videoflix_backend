@@ -48,6 +48,7 @@ class LoginView(ObtainAuthToken):
             data = {
                 'token': token.key,
                 'email': user.email,
+                'id': user.id
             }
         else:
             data = serializer.errors
