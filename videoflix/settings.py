@@ -28,6 +28,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'marius-kasparek.developerakademie.org',
+    'videoflix.marius-kasparek.de',
+    'marius-kasparek.de',
 ]
 
 # Application definition
