@@ -85,10 +85,7 @@ class ActivateAccountView(APIView):
     def get(self, request, uidb64, token):
         try:
             uid = urlsafe_base64_decode(uidb64).decode()
-            print(f"Decoded UID: {uid}")
-            
             user = User.objects.get(pk=uid)
-            print(f"User Found: {user.email}, is_active={user.is_active}")
 
             if default_token_generator.check_token(user, token):
                 user.is_active = True
