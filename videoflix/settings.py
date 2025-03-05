@@ -32,7 +32,8 @@ ALLOWED_HOSTS = [
     'marius-kasparek.developerakademie.org',
     'videoflix.marius-kasparek.de',
     'marius-kasparek.de',
-    '127.0.0.1'
+    '127.0.0.1',
+    'localhost'
 ]
 
 # Application definition

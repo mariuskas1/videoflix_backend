@@ -23,8 +23,8 @@ def send_activation_email(request, user):
             <p style="font-size: 16px; color: #555; margin-bottom: 24px;">Dear <span style="color: rgb(46, 62, 223);">{user.email}</span>,</p>
             
             <p style="font-size: 16px; color: #555;">
-                Thank you for registering with <span style="color: rgb(46, 62, 223); font-weight: bold;">Videoflix</span>. 
-                To complete your registration and verify your email address, please click the button below:
+                Thank you for registering with <span style="color: rgb(46, 62, 223);">Videoflix</span>. 
+                To complete your registration and activate your account, please click on the link below:
             </p>
 
             <!-- Button -->
