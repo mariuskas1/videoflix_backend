@@ -28,6 +28,9 @@ class RegistrationView(APIView):
 
         if serializer.is_valid():
             saved_account = serializer.save()
+            saved_account.is_active = False 
+            saved_account.save()
+
             token, created = Token.objects.get_or_create(user=saved_account)
             data= {
                 'token': token.key,
@@ -36,7 +39,6 @@ class RegistrationView(APIView):
             
             send_activation_email(request, saved_account)
 
-            
         else:
             data=serializer.errors
         

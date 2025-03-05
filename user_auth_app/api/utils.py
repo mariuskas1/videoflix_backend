@@ -18,9 +18,9 @@ def send_activation_email(request, user):
     html_message = format_html(f"""
         <div style="font-family: Arial, sans-serif; padding: 20px; background-color: white;">
             
-            <img src="https://i.postimg.cc/YCbNt72J/Logo.png" alt="Videoflix Logo" width="150" style="margin-bottom: 24px;">
+            <img src="https://i.postimg.cc/YCbNt72J/Logo.png" alt="Videoflix Logo" width="150" style="margin-bottom: 32px;">
             
-            <p style="font-size: 16px; color: #555; margin-bottom: 8px;">Dear <span style="color: rgb(46, 62, 223);">{user.email}</span>,</p>
+            <p style="font-size: 16px; color: #555; margin-bottom: 24px;">Dear <span style="color: rgb(46, 62, 223);">{user.email}</span>,</p>
             
             <p style="font-size: 16px; color: #555;">
                 Thank you for registering with <span style="color: rgb(46, 62, 223); font-weight: bold;">Videoflix</span>. 
@@ -29,7 +29,7 @@ def send_activation_email(request, user):
 
             <!-- Button -->
             <a href="{activation_url}" 
-                style="display: inline-block; padding: 12px 24px; margin: 24px 0; border-radius: 40px;
+                style="display: inline-block; padding: 12px 24px; margin: 32px 0; border-radius: 40px;
                 font-size: 16px; color: white; background-color: rgb(46, 62, 223); text-decoration: none;
                 font-weight: bold; cursor: pointer;">
                 Activate Account
