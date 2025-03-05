@@ -30,6 +30,7 @@ ALLOWED_HOSTS = [
     'marius-kasparek.developerakademie.org',
     'videoflix.marius-kasparek.de',
     'marius-kasparek.de',
+    '127.0.0.1'
 ]
 
 # Application definition
@@ -188,3 +189,14 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ]
 }
+
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.all-inkl.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = 'info@videoflix.marius-kasparek.de'
+EMAIL_HOST_USER = 'm075781a' 
+EMAIL_HOST_PASSWORD = 'pfCSFP8Lr4HAjia'
+DEFAULT_FROM_EMAIL = 'info@videoflix.marius-kasparek.de'
