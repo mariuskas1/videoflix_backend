@@ -56,6 +56,51 @@ def send_activation_email(request, user):
 
 
 
+def send_pw_reset_mail(request, user):
+    
+        uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
+        token = default_token_generator.make_token(user)
+
+        reset_url = f"http://localhost:4200/reset-password/{uidb64}/{token}/"
+
+        html_message = format_html(f"""
+            <div style="font-family: Arial, sans-serif; padding: 20px; background-color: white;">
+                
+                <img src="https://i.postimg.cc/YCbNt72J/Logo.png" alt="Videoflix Logo" width="150" style="margin-bottom: 32px;">
+                
+                <p style="font-size: 16px; color: #555; margin-bottom: 24px;">Dear <span style="color: rgb(46, 62, 223);">{user.email}</span>,</p>
+                
+                <p style="font-size: 16px; color: #555;">
+                    Please click on the link below to reset your password:
+                </p>
+
+                <!-- Button -->
+                <a href="{reset_url}" 
+                    style="display: inline-block; padding: 12px 24px; margin: 32px 0; border-radius: 40px;
+                    font-size: 16px; color: white; background-color: rgb(46, 62, 223); text-decoration: none;
+                    font-weight: bold; cursor: pointer;">
+                    Reset Password
+                </a>
+
+                <p style="font-size: 14px; color: #777;">
+                    If you did not request a password request, please disregard this email.
+                </p>
+                <p style="font-size: 16px; color: #777; margin-top: 20px;">
+                    Best regards, <br><br>
+                    <strong>Your Videoflix Team</strong>
+                </p>
+            </div>
+        """)
+        
+       
+        send_mail(
+            "Password Reset",
+            "",
+            "info@videoflix.marius-kasparek.de",
+            [user.email],
+            fail_silently=False,
+            html_message=html_message,
+        )
 
 
 

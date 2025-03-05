@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import RegistrationView, LoginView, UserView, TokenValidationView, ActivateAccountView
+from .views import RegistrationView, LoginView, UserView, TokenValidationView, ActivateAccountView, RequestPasswordResetView, PasswordResetConfirmView
 from rest_framework.authtoken.views import obtain_auth_token
 from rest_framework import routers
 
@@ -13,4 +13,6 @@ urlpatterns = [
     path('token/validate/', TokenValidationView.as_view(), name='token_validate'),
     path('', include(router.urls)),
     path('activate/<uidb64>/<token>/', ActivateAccountView.as_view(), name="activate"),
+    path('password-reset/', RequestPasswordResetView.as_view(), name="password_reset"),
+    path('password-reset-confirm/<uidb64>/<token>/', PasswordResetConfirmView.as_view(), name="password_reset_confirm"),
 ]
