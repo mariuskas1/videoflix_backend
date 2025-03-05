@@ -54,6 +54,9 @@ class LoginSerializer(serializers.Serializer):
         except User.DoesNotExist:
             raise serializers.ValidationError("Invalid email or password.")
 
+        if not user.is_active:
+            raise serializers.ValidationError("Account not activated.")
+
         user = authenticate(username=user.username, password=password)
 
         if not user:
