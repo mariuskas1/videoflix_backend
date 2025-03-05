@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+import smtplib
+import ssl
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -193,10 +195,13 @@ REST_FRAMEWORK = {
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.all-inkl.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = 'info@videoflix.marius-kasparek.de'
-EMAIL_HOST_USER = 'm075781a' 
+EMAIL_HOST = 'w01f9d06.kasserver.com'
+EMAIL_PORT = 465
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+EMAIL_HOST_USER = 'info@videoflix.marius-kasparek.de'
+# EMAIL_HOST_USER = 'm075781a' 
 EMAIL_HOST_PASSWORD = 'pfCSFP8Lr4HAjia'
 DEFAULT_FROM_EMAIL = 'info@videoflix.marius-kasparek.de'
+
+EMAIL_SSL_CONTEXT = ssl._create_unverified_context()
