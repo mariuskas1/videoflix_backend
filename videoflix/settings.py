@@ -101,6 +101,8 @@ CACHES = {
     }
 }
 
+CACHE_TTL = 60 * 5
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
