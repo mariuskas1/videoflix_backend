@@ -148,3 +148,16 @@ class PasswordResetConfirmView(APIView):
 
         except User.DoesNotExist:
             return Response({"error": "Invalid request."}, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+class CheckEmailView(APIView):
+    def post(self, request, *args, **kwargs):
+        email = request.data.get("email")
+
+        if not email:
+            return Response({"error": "Email is required"}, status=status.HTTP_400_BAD_REQUEST)
+
+        user_exists = User.objects.filter(email=email).exists()
+
+        return Response({"exists": user_exists}, status=status.HTTP_200_OK)
