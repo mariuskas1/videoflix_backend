@@ -14,5 +14,5 @@ urlpatterns = [
     path('', include(router.urls)),
     path('activate/<uidb64>/<token>/', ActivateAccountView.as_view(), name="activate"),
     path('password-reset/', RequestPasswordResetView.as_view(), name="password_reset"),
-    path('password-reset-confirm/<uidb64>/<token>/', PasswordResetConfirmView.as_view(), name="password_reset_confirm"),
+    path('pw-reset-confirm/<uidb64>/<token>/', PasswordResetConfirmView.as_view(), name="password_reset_confirm"),
 ]

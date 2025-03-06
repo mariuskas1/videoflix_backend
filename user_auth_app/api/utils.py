@@ -18,7 +18,7 @@ def send_activation_email(request, user):
     html_message = format_html(f"""
         <div style="font-family: Arial, sans-serif; padding: 20px; background-color: white;">
             
-            <img src="https://i.postimg.cc/YCbNt72J/Logo.png" alt="Videoflix Logo" width="150" style="margin-bottom: 32px;">
+            <img src="https://videoflix.marius-kasparek.de/Logo.png" alt="Videoflix Logo" width="150" style="margin-bottom: 32px;">
             
             <p style="font-size: 16px; color: #555; margin-bottom: 24px;">Dear <span style="color: rgb(46, 62, 223);">{user.email}</span>,</p>
             
@@ -66,7 +66,7 @@ def send_pw_reset_mail(request, user):
         html_message = format_html(f"""
             <div style="font-family: Arial, sans-serif; padding: 20px; background-color: white;">
                 
-                <img src="https://i.postimg.cc/YCbNt72J/Logo.png" alt="Videoflix Logo" width="150" style="margin-bottom: 32px;">
+                <img src="https://videoflix.marius-kasparek.de/Logo.png" alt="Videoflix Logo" width="150" style="margin-bottom: 32px;">
                 
                 <p style="font-size: 16px; color: #555; margin-bottom: 24px;">Dear <span style="color: rgb(46, 62, 223);">{user.email}</span>,</p>
                 
@@ -83,7 +83,7 @@ def send_pw_reset_mail(request, user):
                 </a>
 
                 <p style="font-size: 14px; color: #777;">
-                    If you did not request a password request, please disregard this email.
+                    If you did not request a password reset, please disregard this email.
                 </p>
                 <p style="font-size: 16px; color: #777; margin-top: 20px;">
                     Best regards, <br><br>

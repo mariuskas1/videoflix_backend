@@ -116,6 +116,7 @@ class RequestPasswordResetView(APIView):
         return Response({"message": "Password reset link has been sent to your email."}, status=status.HTTP_200_OK)
     
 
+
 class PasswordResetConfirmView(APIView):
     permission_classes = [AllowAny]
 
@@ -127,10 +128,18 @@ class PasswordResetConfirmView(APIView):
             if not default_token_generator.check_token(user, token):
                 return Response({"error": "Invalid or expired token."}, status=status.HTTP_400_BAD_REQUEST)
 
+            email = request.data.get("email")
             new_password = request.data.get("password")
+            repeated_password = request.data.get("repeated_password")
+
+            if not email or user.email != email:
+                return Response({"error": "Email does not match our records."}, status=status.HTTP_400_BAD_REQUEST)
 
             if not new_password or len(new_password) < 6:
                 return Response({"error": "Password must be at least 6 characters long."}, status=status.HTTP_400_BAD_REQUEST)
+
+            if new_password != repeated_password:
+                return Response({"error": "Passwords do not match."}, status=status.HTTP_400_BAD_REQUEST)
 
             user.set_password(new_password)
             user.save()
