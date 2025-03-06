@@ -133,7 +133,7 @@ class PasswordResetConfirmView(APIView):
             repeated_password = request.data.get("repeated_password")
 
             if not email or user.email != email:
-                return Response({"error": "Email does not match our records."}, status=status.HTTP_400_BAD_REQUEST)
+                return Response({"error": "The email you entered is incorrect."}, status=status.HTTP_400_BAD_REQUEST)
 
             if not new_password or len(new_password) < 6:
                 return Response({"error": "Password must be at least 6 characters long."}, status=status.HTTP_400_BAD_REQUEST)
