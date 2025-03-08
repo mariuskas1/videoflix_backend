@@ -13,7 +13,7 @@ def generate_activation_token(user):
 def send_activation_email(request, user):
 
     uid, token = generate_activation_token(user)
-    activation_url = f"http://localhost:4200/activate/{uid}/{token}/"
+    activation_url = f"https://videoflix.marius-kasparek.de/activate/{uid}/{token}/"
 
     html_message = format_html(f"""
         <div style="font-family: Arial, sans-serif; padding: 20px; background-color: white;">
@@ -61,7 +61,7 @@ def send_pw_reset_mail(request, user):
         uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
         token = default_token_generator.make_token(user)
 
-        reset_url = f"http://localhost:4200/reset-password/{uidb64}/{token}/"
+        reset_url = f"http://videoflix.marius-kasparek.de/reset-password/{uidb64}/{token}/"
 
         html_message = format_html(f"""
             <div style="font-family: Arial, sans-serif; padding: 20px; background-color: white;">
