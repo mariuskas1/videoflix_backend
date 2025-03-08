@@ -52,22 +52,22 @@ The API will be available at http://127.0.0.1:8000/
 
 ### Authentication & User Management
 
-* POST /registration/ - Register a new user
-* POST /login/ - Log in and obtain an authentication token
-* POST /token/validate/ - Validate authentication token
-* GET `/activate/\<uidb64>/\<token>/` - Activate a user account via email verification
-* POST /password-reset/ - Request a password reset link
-* POST `/pw-reset-confirm/\<uidb64>/\<token>/` - Reset the password
-* POST /check-email/ - Check if an email is already registered
+- **POST** `/registration/` - Register a new user  
+- **POST** `/login/` - Log in and obtain an authentication token  
+- **POST** `/token/validate/` - Validate authentication token  
+- **GET** `/activate/<uidb64>/<token>/` - Activate a user account via email verification  
+- **POST** `/password-reset/` - Request a password reset link  
+- **POST** `/pw-reset-confirm/<uidb64>/<token>/` - Reset the password  
+- **POST** `/check-email/` - Check if an email is registered  
 
 
 ### Video Management
 
-* GET /videos/ - Retrieve all videos
-* POST /videos/ - Create a new video
-* GET /videos/{id}/ - Retrieve a specific video
-* PUT /videos/{id}/ - Update a video
-* PATCH /videos/{id}/ - Partially update a video
-* DELETE /videos/{id}/ - Delete a video
+- **GET** `/videos/` - Retrieve all videos  
+- **POST** `/videos/` - Create a new video  
+- **GET** `/videos/{id}/` - Retrieve a specific video  
+- **PUT** `/videos/{id}/` - Update a video  
+- **PATCH** `/videos/{id}/` - Partially update a video  
+- **DELETE** `/videos/{id}/` - Delete a video  
 
 
