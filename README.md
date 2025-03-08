@@ -55,9 +55,9 @@ The API will be available at http://127.0.0.1:8000/
 * POST /registration/ - Register a new user
 * POST /login/ - Log in and obtain an authentication token
 * POST /token/validate/ - Validate authentication token
-* GET /activate/<uidb64>/<token>/ - Activate a user account via email verification
+* GET `/activate/\<uidb64>/\<token>/` - Activate a user account via email verification
 * POST /password-reset/ - Request a password reset link
-* POST /pw-reset-confirm/<uidb64>/<token>/ - Reset the password
+* POST `/pw-reset-confirm/\<uidb64>/\<token>/` - Reset the password
 * POST /check-email/ - Check if an email is already registered
 
 
