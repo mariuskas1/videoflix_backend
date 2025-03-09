@@ -15,13 +15,16 @@ class RegistrationSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['email', 'password', 'repeated_password']
-        extra_kwargs = {
-            'password': {
-                'write_only': True
-            }
-        }
+        extra_kwargs = {'password': { 'write_only': True } }
 
     def validate(self, data):
+        """
+        Validate registration data:
+        - Ensure passwords match.
+        - Check if the email is already registered.
+
+        """
+         
         if data['password'] != data['repeated_password']:
             raise serializers.ValidationError({'error': 'Passwords do not match.'})
 
@@ -31,6 +34,11 @@ class RegistrationSerializer(serializers.ModelSerializer):
         return data
 
     def create(self, validated_data):
+        """
+        Create and return a new user.
+
+        """
+
         validated_data.pop('repeated_password')  
         user = User.objects.create(
             email=validated_data['email'],
@@ -46,20 +54,17 @@ class LoginSerializer(serializers.Serializer):
     password = serializers.CharField(write_only=True)
 
     def validate(self, data):
-        email = data['email']
-        password = data['password']
+        """
+        Validate user credentials:
+        - Ensure the email exists in the system.
+        - Check if the account is active.
+        - Authenticate using the provided password.
 
-        try:
-            user = User.objects.get(email=email)
-        except User.DoesNotExist:
-            raise serializers.ValidationError("Invalid email or password.")
+        """
+        
+        user = User.objects.filter(email=data["email"]).first()
 
-        if not user.is_active:
-            raise serializers.ValidationError("Account not activated.")
-
-        user = authenticate(username=user.username, password=password)
-
-        if not user:
+        if not user or not user.is_active or not (auth_user := authenticate(username=user.username, password=data["password"])):
             raise serializers.ValidationError("Invalid email or password.")
 
         data['user'] = user
