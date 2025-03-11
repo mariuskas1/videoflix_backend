@@ -75,6 +75,12 @@ class UserView(ReadOnlyModelViewSet):
 
 
 class TokenValidationView(APIView):
+    """
+    This view checks if a provided authentication token is valid. If the token is
+    valid and the user is authenticated, it returns a confirmation response.
+
+    """
+    
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
 
@@ -83,6 +89,15 @@ class TokenValidationView(APIView):
     
 
 class ActivateAccountView(APIView):
+    """
+    This view handles account activation by verifying a user's identity using a
+    base64-encoded user ID (`uidb64`) and an activation token. If the token is valid,
+    the user's account is activated.
+
+    Methods:
+        get(request, uidb64, token): Activates the user account if the token is valid.
+    """
+
     def get(self, request, uidb64, token):
         try:
             uid = urlsafe_base64_decode(uidb64).decode()
@@ -100,6 +115,14 @@ class ActivateAccountView(APIView):
 
 
 class RequestPasswordResetView(APIView):
+    """
+    This view allows users to initiate a password reset by providing their email address.
+    If the email is associated with a registered user, a password reset link is sent to their email.
+
+    Methods:
+        post(request): Handles password reset requests by sending an email with a reset link.
+    """
+
     def post(self, request):
         email = request.data.get('email')
 
@@ -108,16 +131,20 @@ class RequestPasswordResetView(APIView):
         except User.DoesNotExist:
             return Response({"error": "No account found with this email."}, status=status.HTTP_404_NOT_FOUND)
 
-
         send_pw_reset_mail(request,user)
-
-        
 
         return Response({"message": "Password reset link has been sent to your email."}, status=status.HTTP_200_OK)
     
 
 
 class PasswordResetConfirmView(APIView):
+    """
+    This view handles password reset confirmation by verifying the user's identity
+    using a UID and token, ensuring the provided email matches, and validating 
+    the new password before updating it.
+
+    """
+
     permission_classes = [AllowAny]
 
     def post(self, request, uidb64, token):
@@ -152,6 +179,11 @@ class PasswordResetConfirmView(APIView):
 
 
 class CheckEmailView(APIView):
+    """
+    This view checks if a account with a given mail is already registered.
+
+    """
+
     def post(self, request, *args, **kwargs):
         email = request.data.get("email")
 
