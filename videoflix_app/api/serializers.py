@@ -6,7 +6,7 @@ import os
 
 class VideoSerializer(serializers.ModelSerializer):
     """ This serializer automatically creates the urls for the other video-resolutions according to the uploaded file field."""
-    
+
     video_file_120p = serializers.SerializerMethodField()
     video_file_360p = serializers.SerializerMethodField()
     video_file_720p = serializers.SerializerMethodField()
@@ -31,19 +31,18 @@ class VideoSerializer(serializers.ModelSerializer):
     def get_video_url(self, video_file, resolution):
         if not video_file:
             return None
-        
+
         # Extract filename from FileField
-        base_name = os.path.basename(video_file.name)  
+        base_name = os.path.basename(video_file.name)
         converted_filename = base_name.replace('.mp4', f'_{resolution}p.mp4')
 
-        # Construct the relative path under media
-        converted_path = f"videos/{converted_filename}"  
+        # Construct the full absolute URL
+        full_url = f"{settings.MEDIA_URL}videos/{converted_filename}"
 
-        # Construct the absolute file path to check existence
-        full_path = os.path.join(settings.MEDIA_ROOT, converted_path)
-
-        # Only return the URL if the file actually exists
-        if os.path.exists(full_path):
-            return f"{settings.MEDIA_URL}{converted_path}"
+        # Ensure the URL is properly formatted with the full domain
+        request = self.context.get('request', None)
+        if request:
+            return request.build_absolute_uri(full_url)
         
-        return None
+        # Fallback if request context is not available
+        return f"{settings.MEDIA_URL}{full_url}"
