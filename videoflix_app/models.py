@@ -16,10 +16,6 @@ class Video(models.Model):
     genre = models.CharField(max_length=80, choices=GENRES, default='documentary')
     description = models.CharField(max_length=500, blank=True, null=True)
     video_file = models.FileField(upload_to='videos', blank=True, null=True)
-    video_file_120p = models.FileField(upload_to='videos/120p/', null=True, blank=True)
-    video_file_360p = models.FileField(upload_to='videos/360p/', null=True, blank=True)
-    video_file_720p = models.FileField(upload_to='videos/720p/', null=True, blank=True)
-    video_file_1080p = models.FileField(upload_to='videos/1080p/', null=True, blank=True)
     
     thumbnail = models.FileField(upload_to='thumbnails', null=True, blank=True)
     new = models.BooleanField(default=False)

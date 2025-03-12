@@ -30,7 +30,7 @@ class VideoSerializer(serializers.ModelSerializer):
         if not video_path:
             return None
         
-        base_name = os.path.basename(video_path.url)  
+        base_name = os.path.basename(video_path.name)  
         converted_path = f"media/videos/{base_name.replace('.mp4', f'_{resolution}p.mp4')}"
         
         
