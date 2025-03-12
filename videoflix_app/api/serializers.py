@@ -45,4 +45,4 @@ class VideoSerializer(serializers.ModelSerializer):
             return request.build_absolute_uri(full_url)
         
         # Fallback if request context is not available
-        return f"{settings.MEDIA_URL}{full_url}"
+        return full_url
