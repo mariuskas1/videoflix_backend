@@ -6,15 +6,16 @@ from videoflix_app.tasks import convert_120p, convert_360p, convert_720p, conver
 import django_rq
 
 
+
 @receiver(post_save, sender=Video)
 def video_post_save(sender, instance, created, **kwargs):
     
     if created:
         queue = django_rq.get_queue('default', autocommit=True)
-        queue.enqueue(convert_120p, instance.video_file.path)
-        queue.enqueue(convert_360p, instance.video_file.path)
-        queue.enqueue(convert_720p, instance.video_file.path)
-        queue.enqueue(convert_1080p, instance.video_file.path)
+        queue.enqueue(convert_120p, instance.video_file.path, job_timeout=1200)
+        queue.enqueue(convert_360p, instance.video_file.path, job_timeout=1200)
+        queue.enqueue(convert_720p, instance.video_file.path, job_timeout=1200)
+        queue.enqueue(convert_1080p, instance.video_file.path, job_timeout=1200)
         
 
 
