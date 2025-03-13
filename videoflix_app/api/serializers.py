@@ -5,7 +5,8 @@ import os
 
 
 class VideoSerializer(serializers.ModelSerializer):
-    """ This serializer automatically creates the urls for the other video-resolutions according to the uploaded file field."""
+    """ This serializer automatically creates the urls for every video-resolution
+      according to the file name in the file_field."""
 
     video_file_120p = serializers.SerializerMethodField()
     video_file_360p = serializers.SerializerMethodField()

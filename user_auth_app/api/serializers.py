@@ -34,10 +34,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
         return data
 
     def create(self, validated_data):
-        """
-        Create and return a new user.
-
-        """
+        """ Create and return a new user. """
 
         validated_data.pop('repeated_password')  
         user = User.objects.create(

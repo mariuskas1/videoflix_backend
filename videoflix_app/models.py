@@ -16,7 +16,6 @@ class Video(models.Model):
     genre = models.CharField(max_length=80, choices=GENRES, default='documentary')
     description = models.CharField(max_length=500, blank=True, null=True)
     video_file = models.FileField(upload_to='videos', blank=True, null=True)
-    
     thumbnail = models.FileField(upload_to='thumbnails', null=True, blank=True)
     new = models.BooleanField(default=False)
 

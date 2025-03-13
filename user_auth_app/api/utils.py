@@ -11,6 +11,7 @@ def generate_activation_token(user):
 
 
 def send_activation_email(request, user):
+    """This function sends a mail to every newly registered user on which he can click on to activate his account."""
 
     uid, token = generate_activation_token(user)
     activation_url = f"https://videoflix.marius-kasparek.de/activate/{uid}/{token}/"
@@ -57,6 +58,8 @@ def send_activation_email(request, user):
 
 
 def send_pw_reset_mail(request, user):
+        """This function sends a mail to a user who has requested a password reset. It contains a link on which he can click on
+        that will redirect him to the reset-password page, with authentication tokens in the url."""
     
         uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
         token = default_token_generator.make_token(user)
