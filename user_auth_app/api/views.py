@@ -21,6 +21,9 @@ User = get_user_model()
 
 
 class RegistrationView(APIView):
+    """ This view handles user registration. It generates an auth token and send an activation mail with a link
+     for account activation. """
+    
     permission_classes = [AllowAny]
 
     def post(self, request):
@@ -47,6 +50,8 @@ class RegistrationView(APIView):
 
 
 class LoginView(ObtainAuthToken):
+    """ This view handles user authentication and validates user credentials. It returns an auth token if valid. """
+
     permission_classes = [AllowAny]
     serializer_class = LoginSerializer
 
@@ -69,6 +74,8 @@ class LoginView(ObtainAuthToken):
     
 
 class UserView(ReadOnlyModelViewSet):
+    """ This view provides a read-only user listing for authenticated users only. """
+
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [IsAuthenticated]
@@ -179,10 +186,7 @@ class PasswordResetConfirmView(APIView):
 
 
 class CheckEmailView(APIView):
-    """
-    This view checks if a account with a given mail is already registered.
-
-    """
+    """  This view checks if a account with a given mail is already registered.  """
 
     def post(self, request, *args, **kwargs):
         email = request.data.get("email")
